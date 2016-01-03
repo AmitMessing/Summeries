@@ -1,4 +1,15 @@
-﻿var summeriesApp = angular.module('summeriesApp', ['ngRoute']);
+﻿angular.module('summeriesApp',
+    [
+        'ngResource',
+        'ui.router',
+        'homeApp',
+        'homeService',
+        'uiRouterApp'
+    ]
+);
+
+/*
+var summeriesApp = angular.module('summeriesApp', ['ngRoute']);
 summeriesApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
@@ -8,4 +19,4 @@ summeriesApp.config(function($routeProvider, $locationProvider) {
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
-});
+});*/

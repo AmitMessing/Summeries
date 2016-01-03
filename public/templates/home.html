@@ -1,0 +1,109 @@
+<div>
+    <div class="row">
+        <div class="col-md-10">
+            <video id="homevideo" width="80%" autoplay onended="run()">
+                <source src="http://movietrailers.apple.com/movies/disney/insideout/insideout-usca-tlr2_h720p.mov" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="container-fluid" style="display: -webkit-box;">
+        <form class="navbar-form navbar-left row" role="search">
+            <div class="form-control btn btn-link"></div>
+            <div class="form-group">
+                <input type="text" class="form-control" style="margin-top: 1px; border-radius: 1px" placeholder="חיפוש" name="searchString">
+            </div>
+            <button style="border-radius: 1px" type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+        </form>
+    </div>
+
+    <div class="site-content" ng-init="getMedias()">
+        <div class="row" style="height: 100%">
+            <div class="col-md-6 content-column">
+                <div class="row">
+                    <div class="col-md-9 home-header">
+                        הסרטים החדשים ביותר
+                    </div>
+                </div>
+                <div class="row content-row">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <a >
+                                <span class="btn glyphicon glyphicon-trash"></span>
+                                </a>
+                                <a >
+                                <span class="btn glyphicon glyphicon-pencil"></span>
+                                </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5" style="padding: 0;">
+                        <img style="width: 100%; height: 130px" src="" />
+                    </div>
+                </div>
+                }
+                }
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-9 home-header">
+                            הסדרות החדשות ביותר
+                        </div>
+                    </div>
+                    <div class="row content-row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a >
+                                    <span class="btn glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a >
+                                    <span class="btn glyphicon glyphicon-pencil"></span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <img style="width: 100%; height: 130px" src=""/>
+                        </div>
+                    </div>
+                    }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        var videos = ['http://movietrailers.apple.com/movies/disney/insideout/insideout-usca-tlr2_h720p.mov',
+            'http://movietrailers.apple.com/movies/lionsgate/thehungergamesmockingjaypart2/mockingjaypt2-tlr4_h720p.mov',
+            'http://movietrailers.apple.com/movies/independent/uponthewooftop/uponthewooftop-tlr1_h720p.mov',
+            'http://movietrailers.apple.com/movies/entertainmentone/lostinthesun/lostinthesun-tlr1_h720p.mov'];
+        var video_count = 1;
+        var videoPlayer = document.getElementById("homevideo");
+
+        function run() {
+            video_count++;
+            if (video_count === 3) video_count = 1;
+            var nextVideo = videos[video_count];
+            videoPlayer.src = nextVideo;
+            videoPlayer.play();
+        };
+
+    </script>
+</div>

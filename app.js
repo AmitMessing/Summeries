@@ -9,6 +9,23 @@ var mongodb = require('mongodb');
 var cons = require('consolidate');
 var fs = require('fs');
 
+//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+var MongoClient = mongodb.MongoClient;
+// Connection URL. This is where your mongodb server is running.
+var url = 'mongodb://localhost:27017/summeries';
+
+// Use connect method to connect to the Server
+MongoClient.connect(url, function(err, db) {
+    if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+    }
+    else {
+        global.myDb = db;
+
+        homeRoute(app);
+    }
+});
+
 var homeRoute = require('./routes/home');
 
 var app = express();
@@ -28,8 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('port',process.env.PORT || 8080);
 
 module.exports = app;
-
-homeRoute(app);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));

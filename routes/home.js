@@ -7,4 +7,7 @@ module.exports = function(app) {
 
     app.route('/home')
         .get(home.render);
+
+    app.route('/home/GetMedias')
+        .get(home.allMedias);
 }
