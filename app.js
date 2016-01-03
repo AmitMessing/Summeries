@@ -9,6 +9,8 @@ var mongodb = require('mongodb');
 var cons = require('consolidate');
 var fs = require('fs');
 
+var homeRoute = require('./routes/home');
+
 var app = express();
 
 // view engine setup
@@ -27,16 +29,8 @@ app.set('port',process.env.PORT || 8080);
 
 module.exports = app;
 
+homeRoute(app);
+
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
-});
-
-app.get('/', function(request, response){
-    response.render('index');
-});
-
-app.get('/about', function(request, response){
-    response.setHeader('Content-Type','text/html');
-    response.write("Amit <3");
-    response.end();
 });
