@@ -1,1 +1,16 @@
 *.xml
+*.wt
+*.2016-01-03T11-41-43Z-00000
+*.2016-01-03T11-43-58Z-00000
+*.lock
+*.bson
+data/WiredTiger
+*.2016-01-03T11-56-17Z-00000
+*.turtle
+*WiredTigerPreplog.0000000002
+*.0000000001
+*.0000000007
+*.2016-01-03T11-53-57Z-00000
+data/diagnostic.data/metrics.2016-01-03T11-47-36Z-00000
+data/diagnostic.data/metrics.2016-01-03T11-50-54Z-00000
+data/diagnostic.data/metrics.2016-01-03T11-51-37Z-00000

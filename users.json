@@ -1,0 +1,17 @@
+[{
+        firstName: "עמית",
+        lastName: "עמית",
+        password: "123",
+        userName: "מנהל",
+        email: "ma@gmail.com",
+		type: 2
+    },
+	{
+        firstName: "יוני",
+        lastName: "יוני",
+        password: "111",
+        userName: "יוני",
+        email: "sss@gmail.com",
+		type: 0
+		
+	}]
