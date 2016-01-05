@@ -9,5 +9,5 @@ module.exports = function(app) {
         .get(home.render);
 
     app.route('/home/GetMedias')
-        .get(home.allMedias);
+        .get(home.allMedia);
 }

@@ -22,7 +22,63 @@
 
     <base href="/">
 </head>
-<body>
+<body dir="rtl">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="site-header row">
+        <div class="col-md-2 name-header">
+            <div>
+                <label class="header-link"></label>
+            </div>
+            <b> שלום אורח</b>
+            <div>
+                <label class="header-link">התחבר</label>
+                <label class="header-link">הרשם</label>
+            </div>
+        </div>
+        <div class="col-md-9" style="display: flex">
+            <h1 class="glyphicon glyphicon-film header-icon" aria-hidden="true"></h1>
+            <h1 class="h1-header">תקצירים</h1>
+        </div>
+    </div>
+    <div class="site-menu row">
+        <label class="site-menu-items">
+            <a>
+                דף הבית
+            </a>
+        </label>
+        <label class="site-menu-items">
+            <a>
+            כל הסרטים
+            </a>
+        </label>
+        <label class="site-menu-items">
+            <a>
+                כל הסדרות
+            </a>
+        </label>
+        <label class="site-menu-items">
+            <a>
+                עריכת פרטי משתמש
+            </a>
+        </label>
+        <label class="site-menu-items">
+        <a>
+            הוספת מדיה
+        </a>
+        </label>
+        <label class="site-menu-items">
+           <a>
+               סטטיסטיקות
+           </a>
+        </label>
+    </div>
+</nav>
+
+<div class="container body-content site-container">
     <div ui-view></div>
+</div>
 </body>
+<footer>
+    <p>&#169; Yoni & Amit</p>
+</footer>
 </html>

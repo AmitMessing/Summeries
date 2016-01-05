@@ -7,8 +7,8 @@ exports.render = function(req, res) {
     res.sendFile(path.join(__dirname, '../public/', 'index.html'));
 };
 
-exports.allMedias = function(req, res) {
-    media.find().aggregate('Media').exec(function(err, media) {
+exports.allMedia = function(req, res) {
+    media.find().toArray(function(err, media) {
         if (err) {
             return res.status(500).json({
                 error: 'error in getting all media'

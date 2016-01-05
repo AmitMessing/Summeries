@@ -15,7 +15,6 @@
             <button style="border-radius: 1px" type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
         </form>
     </div>
-
     <div class="site-content" ng-init="getMedias()">
         <div class="row" style="height: 100%">
             <div class="col-md-6 content-column">
@@ -24,57 +23,54 @@
                         הסרטים החדשים ביותר
                     </div>
                 </div>
-                <div class="row content-row">
+                <div ng-repeat="media in medias">
+                     <div class="row content-row" ng-if="media.mediaType === 1">
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-8">
-
-                            </div>
+                            <div class="col-md-4">{{media.releaseDate}}</div>
+                            <div class="col-md-8">{{media.hebrewTitle}}</div>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-show="false">
                             <div class="col-md-12">
-
-                                <a >
+                                <a href="">
                                 <span class="btn glyphicon glyphicon-trash"></span>
                                 </a>
-                                <a >
+                                <a href="">
                                 <span class="btn glyphicon glyphicon-pencil"></span>
                                 </a>
-                                }
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5" style="padding: 0;">
-                        <img style="width: 100%; height: 130px" src="" />
+                        <img style="width: 100%; height: 130px" src=""/>
                     </div>
                 </div>
-                }
-                }
+                </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 content-column">
                 <div class="row">
                     <div class="row">
                         <div class="col-md-9 home-header">
                             הסדרות החדשות ביותר
                         </div>
                     </div>
-                    <div class="row content-row">
+                    <div  ng-repeat="media in medias">
+                    <div class="row content-row" ng-if="media.mediaType === 2">
                         <div class="col-md-7">
                             <div class="row">
-                                <div class="col-md-4"></div>
+                                <div class="col-md-4">{{media.releaseDate}}</div>
                                 <div class="col-md-8">
+                                    {{media.hebrewTitle}}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a >
+                                    <a href="@Url.Action("DeleteMedia", "Media", new {id = media.Id})">
                                     <span class="btn glyphicon glyphicon-trash"></span>
                                     </a>
-                                    <a >
+                                    <a href="@Url.Action("EditMedia", "Media", new {media.Id})">
                                     <span class="btn glyphicon glyphicon-pencil"></span>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
@@ -82,13 +78,12 @@
                             <img style="width: 100%; height: 130px" src=""/>
                         </div>
                     </div>
-                    }
-                    }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <script language="javascript" type="text/javascript">
         var videos = ['http://movietrailers.apple.com/movies/disney/insideout/insideout-usca-tlr2_h720p.mov',
             'http://movietrailers.apple.com/movies/lionsgate/thehungergamesmockingjaypart2/mockingjaypt2-tlr4_h720p.mov',
