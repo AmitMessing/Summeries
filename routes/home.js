@@ -8,6 +8,6 @@ module.exports = function(app) {
     app.route('/home')
         .get(home.render);
 
-    app.route('/home/GetMedias')
+    app.route('/home/GetAllMedia')
         .get(home.allMedia);
 }

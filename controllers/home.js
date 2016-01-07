@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var media =  global.myDb.collection('media');
+var media = global.myDb.collection('media');
 
 exports.render = function(req, res) {
     var path = require('path');

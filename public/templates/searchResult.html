@@ -1,0 +1,27 @@
+<div>
+    <div class="site-content" ng-init="search()">
+        <div class="row" style="height: 100%">
+            <div class="col-md-12 content-column">
+                <div ng-if="searchResult" ng-repeat="media in searchResult">
+                    <div class="row search-content-row">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-2">{{media.releaseDate}}</div>
+                            <div class="col-md-10">{{media.englishTitle}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="height: 170px">{{media.summery}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img style="width: 100%; height: 230px" src="data:image/png;base64,{{media.image}}"/>
+                    </div>
+                </div>
+                </div>
+                <div ng-if="!searchResult">
+                    <h3><span>לא נמצאו תוצאות התואמות את החיפוש המבוקש.</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

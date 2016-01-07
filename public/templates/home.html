@@ -6,16 +6,16 @@
             </video>
         </div>
     </div>
-    <div class="container-fluid" style="display: -webkit-box;">
-        <form class="navbar-form navbar-left row" role="search">
-            <div class="form-control btn btn-link"></div>
+    <div class="container-fluid">
+        <form class="navbar-form navbar-left row" role="search" ng-submit="setSearchQuery(searchQuery)">
+            <a ui-sref="advanceSearchInstructions" >חיפוש מתקדם</a>
             <div class="form-group">
-                <input type="text" class="form-control" style="margin-top: 1px; border-radius: 1px" placeholder="חיפוש" name="searchString">
+                <input type="text" ng-model="searchQuery" class="form-control" style="padding-top: 10px; margin-top: 1px; border-radius: 1px" placeholder="חיפוש" name="searchString">
             </div>
-            <button style="border-radius: 1px" type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+            <button type="submit" class="btn btn-info glyphicon glyphicon-search" style="border-radius: 1px"></button>
         </form>
     </div>
-    <div class="site-content" ng-init="getMedias()">
+    <div class="site-content" ng-init="getAllMedia()">
         <div class="row" style="height: 100%">
             <div class="col-md-6 content-column">
                 <div class="row">
@@ -23,7 +23,7 @@
                         הסרטים החדשים ביותר
                     </div>
                 </div>
-                <div ng-repeat="media in medias">
+                <div ng-repeat="media in allMedia">
                      <div class="row content-row" ng-if="media.mediaType === 1">
                     <div class="col-md-7">
                         <div class="row">
@@ -54,7 +54,7 @@
                             הסדרות החדשות ביותר
                         </div>
                     </div>
-                    <div  ng-repeat="media in medias">
+                    <div  ng-repeat="media in allMedia">
                     <div class="row content-row" ng-if="media.mediaType === 2">
                         <div class="col-md-7">
                             <div class="row">
@@ -65,10 +65,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="@Url.Action("DeleteMedia", "Media", new {id = media.Id})">
+                                    <a href="">
                                     <span class="btn glyphicon glyphicon-trash"></span>
                                     </a>
-                                    <a href="@Url.Action("EditMedia", "Media", new {media.Id})">
+                                    <a href="">
                                     <span class="btn glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </div>

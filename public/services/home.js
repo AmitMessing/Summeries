@@ -1,5 +1,5 @@
 angular.module('homeService', [])
-    .factory('Medias', ['$resource',
+    .factory('AllMedia', ['$resource',
         function($resource) {
-            return  $resource('/home/getMedias', {},{get: {method: 'GET',isArray: true}})
+            return  $resource('/home/getAllMedia')
     }])

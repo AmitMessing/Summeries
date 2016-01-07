@@ -1,15 +1,26 @@
 angular.module('uiRouterApp', [])
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider,   $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+        function ($stateProvider,   $urlRouterProvider, $locationProvider) {
+            $locationProvider.html5Mode(true);
+
             $urlRouterProvider
                 .otherwise('/');
 
             $stateProvider
-
-            // home page
+                // home page
                 .state('home', {
                     url: '/',
                     templateUrl: 'templates/home.html',
                     controller: 'homeController'
+                })
+                .state('advanceSearchInstructions', {
+                    url: '/advanceSearchInstructions',
+                    templateUrl:'templates/advanceSearchInstructions.html',
+                    controller: ''
+                }).
+                state('searchResult', {
+                    url: '/searchResult',
+                    templateUrl: 'templates/searchResult.html',
+                    controller: 'searchController'
                 })
 }]);

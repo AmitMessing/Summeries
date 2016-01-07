@@ -3,7 +3,9 @@
         'ngResource',
         'ui.router',
         'homeApp',
+        'SearchApp',
         'homeService',
+        'searchService',
         'uiRouterApp'
     ]
 );

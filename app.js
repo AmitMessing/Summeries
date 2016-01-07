@@ -23,10 +23,12 @@ MongoClient.connect(url, function(err, db) {
         global.myDb = db;
 
         homeRoute(app);
+        searchRoute(app);
     }
 });
 
 var homeRoute = require('./routes/home');
+var searchRoute = require('./routes/search');
 
 var app = express();
 
