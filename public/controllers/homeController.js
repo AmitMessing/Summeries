@@ -1,5 +1,5 @@
 angular.module('homeApp', [])
-    .controller('homeController',['$scope','$resource', 'AllMedia', 'searchService', function ($scope, $resource, AllMedia, searchService) {
+    .controller('homeController',['$scope','$resource', 'AllMedia', 'searchService', '$state', function ($scope, $resource, AllMedia, searchService, $state) {
         $scope.getAllMedia = function() {
             AllMedia.query(function (allMedia) {
                 $scope.allMedia = allMedia;
@@ -11,5 +11,6 @@ angular.module('homeApp', [])
                 return;
             }
             searchService.setSearchQuery(searchQuery);
+            $state.go('searchResult');
         }
     }]);

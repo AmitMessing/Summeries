@@ -3,7 +3,7 @@
         'ngResource',
         'ui.router',
         'homeApp',
-        'SearchApp',
+        'searchApp',
         'homeService',
         'searchService',
         'uiRouterApp'

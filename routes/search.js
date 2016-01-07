@@ -9,6 +9,6 @@ module.exports = function(app) {
     app.route('/advanceSearchInstructions')
         .get(search.advanceSearchInstructions);
 
-    app.route('/home/SearchMedia/:searchQuery')
+    app.route('/home/searchMedia/:searchQuery')
         .get(search.searchMedia);
 }

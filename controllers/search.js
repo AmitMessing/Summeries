@@ -47,7 +47,7 @@ exports.searchMedia = function(req,res){
 }
 
 var simpleSearch = function(res, searchQuery){
-    media.find({$or: [{"hebrewTitle": /searchQuery/} ,{"englishTitle": /searchQuery/}]}).toArray(function(err, searchResult){
+    media.find({$or: [{"hebrewTitle": /עולם היורה/} ,{"englishTitle": /עולם היורה/}]}).toArray(function(err, searchResult){
         if (err) {
             return res.status(500).json({
                 error: 'error occured while searching for media'

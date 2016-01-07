@@ -1,5 +1,5 @@
 angular.module('searchService', [])
-    .service('searchService', function() {
+    .service('searchService', ['$resource', function($resource) {
             var searchQuery = "";
 
             var setSearchQuery = function(query){
@@ -7,12 +7,12 @@ angular.module('searchService', [])
             };
 
             var search = function(){
-                return $resource('/home/SearchMedia/:searchQuery', { searchQuery: searchQuery});
+                return $resource('/home/searchMedia/:searchQuery', { searchQuery: searchQuery});
             };
 
             return {
                 setSearchQuery: setSearchQuery,
                 search: search
             };
-        }
+        }]
     );
