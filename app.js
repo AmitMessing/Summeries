@@ -43,7 +43,6 @@ app.engine('html', cons.handlebars);
 app.use(favicon(path.join(__dirname, 'public', 'images/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

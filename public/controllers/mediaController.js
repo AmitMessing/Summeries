@@ -1,5 +1,5 @@
 angular.module('mediaApp', [])
-    .controller('mediaController',['$scope', '$stateParams', '$resource', function ($scope,$stateParams,$resource) {
+    .controller('mediaController',['$scope', '$stateParams', '$resource', '$state', function ($scope,$stateParams,$resource,$state) {
         var mediaId = $stateParams.mediaId;
 
         $scope.init = function(){

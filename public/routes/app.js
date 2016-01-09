@@ -1,8 +1,6 @@
 angular.module('uiRouterApp', [])
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         function ($stateProvider,   $urlRouterProvider, $locationProvider) {
-            $locationProvider.html5Mode(true);
-
             $urlRouterProvider
                 .otherwise('/');
 
@@ -25,14 +23,8 @@ angular.module('uiRouterApp', [])
                 }).
                 state('mediaDetails',
                 {
-                    url:'/mediaDetails',
+                    url:'/mediaDetails/:mediaId',
                     templateUrl:'templates/mediaDetails.html',
-                    controller: 'mediaController',
-                    params:{
-                        mediaId: {
-                            value:-1
-                        },
-                        hiddenParam: 'YES'
-                    }
+                    controller: 'mediaController'
                 })
 }]);
