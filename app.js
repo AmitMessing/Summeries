@@ -8,7 +8,6 @@ var http = require('http');
 var mongodb = require('mongodb');
 var methodOverride = require('method-override');
 var cons = require('consolidate');
-var fs = require('fs');
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
@@ -25,11 +24,13 @@ MongoClient.connect(url, function(err, db) {
 
         homeRoute(app);
         searchRoute(app);
+        mediaRoute(app);
     }
 });
 
 var homeRoute = require('./routes/home');
 var searchRoute = require('./routes/search');
+var mediaRoute = require('./routes/media');
 
 var app = express();
 

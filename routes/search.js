@@ -4,11 +4,8 @@ module.exports = function(app) {
     var search = require('../controllers/search');
 
     app.route('/searchResult')
-        .get(search.searchMedia);
+        .get(search.searchResult);
 
-    app.route('/advanceSearchInstructions')
-        .get(search.advanceSearchInstructions);
-
-    app.route('/home/searchMedia/:searchQuery')
+    app.route('/searchMedia/:searchQuery')
         .get(search.searchMedia);
-}
+};

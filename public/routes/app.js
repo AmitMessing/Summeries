@@ -22,5 +22,17 @@ angular.module('uiRouterApp', [])
                     url: '/searchResult',
                     templateUrl: 'templates/searchResult.html',
                     controller: 'searchController'
+                }).
+                state('mediaDetails',
+                {
+                    url:'/mediaDetails',
+                    templateUrl:'templates/mediaDetails.html',
+                    controller: 'mediaController',
+                    params:{
+                        mediaId: {
+                            value:-1
+                        },
+                        hiddenParam: 'YES'
+                    }
                 })
 }]);

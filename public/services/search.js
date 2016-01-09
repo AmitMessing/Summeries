@@ -7,7 +7,7 @@ angular.module('searchService', [])
             };
 
             var search = function(){
-                return $resource('/home/searchMedia/:searchQuery', { searchQuery: searchQuery});
+                return $resource('/searchMedia/:searchQuery', { searchQuery: searchQuery});
             };
 
             return {

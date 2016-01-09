@@ -4,6 +4,7 @@
         'ui.router',
         'homeApp',
         'searchApp',
+        'mediaApp',
         'homeService',
         'searchService',
         'uiRouterApp'

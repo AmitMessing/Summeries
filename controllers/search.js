@@ -1,5 +1,3 @@
-var fs = require('fs');
-
 var media = global.myDb.collection('media');
 var users = global.myDb.collection('users');
 
@@ -13,7 +11,7 @@ enumMediaType = {
     None: 0,
     Movie: 1,
     Series: 2
-}
+};
 
 /*
  enumCategories = {
@@ -30,7 +28,7 @@ enumMediaType = {
  }
  */
 
-exports.advanceSearchInstructions = function(req, res) {
+exports.searchResult = function(req, res) {
     var path = require('path');
     res.sendFile(path.join(__dirname, '../public/', 'index.html'));
 };
@@ -44,10 +42,10 @@ exports.searchMedia = function(req,res){
     else{
         simpleSearch(res, searchQuery);
     }
-}
+};
 
 var simpleSearch = function(res, searchQuery){
-    media.find({$or: [{"hebrewTitle": /עולם היורה/} ,{"englishTitle": /עולם היורה/}]}).toArray(function(err, searchResult){
+    media.find({$or: [{"hebrewTitle": new RegExp(searchQuery)} ,{"englishTitle": new RegExp(searchQuery, 'i')}]}).toArray(function(err, searchResult){
         if (err) {
             return res.status(500).json({
                 error: 'error occured while searching for media'
@@ -55,7 +53,7 @@ var simpleSearch = function(res, searchQuery){
         }
         res.json(searchResult);
     })
-}
+};
 
 var advancedSearch = function(res, searchQuery){
     var tempStrings = searchQuery.split(' ');
@@ -83,7 +81,7 @@ var advancedSearch = function(res, searchQuery){
             case DIRECTOR:
             {
                 var directorName = tempStrings[1];
-                searchResult = media.find({"directors": /directorName/});
+                searchResult = media.find({"directors": new RegExp(directorName, 'i')});
                 break;
             }
             case MOVIE:
@@ -125,4 +123,4 @@ var advancedSearch = function(res, searchQuery){
             error: 'error occured while searching for media'
         });
     }
-}
+};
