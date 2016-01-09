@@ -25,7 +25,7 @@ angular.module('mediaApp', [])
                 imageObj.onload = function () {
                     context.drawImage(imageObj, 0, 0, 400, 494);
                 };
-                imageObj.src = "data:image/png;base64,"+ media.image;
+                imageObj.src = media.image;
             });
 
             initImdbApi(window.document, 'script', 'imdb-rating-api');
