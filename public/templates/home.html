@@ -9,12 +9,12 @@
         </div>
     </div>
     <div class="container-fluid">
-        <form class="navbar-form navbar-left row" role="search" ng-submit="setSearchQuery(searchQuery)">
+        <form class="navbar-form navbar-left row" role="search">
             <a ui-sref="advanceSearchInstructions" >חיפוש מתקדם</a>
             <div class="form-group">
                 <input type="text" ng-model="searchQuery" class="form-control" style="padding-top: 10px; margin-top: 1px; border-radius: 1px" placeholder="חיפוש" name="searchString">
             </div>
-            <button type="submit" class="btn btn-info glyphicon glyphicon-search" style="border-radius: 1px"></button>
+            <button ui-sref="searchResult({searchQuery: searchQuery })" class="btn btn-info glyphicon glyphicon-search" style="border-radius: 1px"></button>
         </form>
     </div>
     <div class="site-content" ng-init="getAllMedia()">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col-md-5" style="padding: 0;">
-                        <img style="width: 100%; height: 130px" ng-src="{{media.image}}"/>
+                        <img style="width: 100%; height: 130px" src="{{media.image}}"/>
                     </div>
                 </div>
                 </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <img style="width: 100%; height: 130px" ng-src="{{media.image}}"/>
+                            <img style="width: 100%; height: 130px" src="{{media.image}}"/>
                         </div>
                     </div>
                     </div>

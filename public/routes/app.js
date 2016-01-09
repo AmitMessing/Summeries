@@ -17,7 +17,7 @@ angular.module('uiRouterApp', [])
                     controller: ''
                 }).
                 state('searchResult', {
-                    url: '/searchResult',
+                    url: '/searchResult/:searchQuery',
                     templateUrl: 'templates/searchResult.html',
                     controller: 'searchController'
                 }).

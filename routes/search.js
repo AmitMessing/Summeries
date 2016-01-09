@@ -6,6 +6,6 @@ module.exports = function(app) {
     app.route('/searchResult')
         .get(search.searchResult);
 
-    app.route('/searchMedia/:searchQuery')
+    app.route('/searchResult/:searchQuery')
         .get(search.searchMedia);
 };
