@@ -111,58 +111,99 @@ footer p {
     box-shadow: 1px -1px 55px 0 seashell;
 }
 
+.add-media-btn{
+    background: dodgerblue !important;
+    position: fixed !important;
+    bottom: 20px;
+    left: 20px;
+}
+.modal {
+    display: flex !important;
+}
+
+.modal-dialog{
+    overflow: auto;
+}
+
+.modal-open{
+  overflow: auto;
+}
+.modal-body:before,
+.modal-body:after {
+display: table;
+content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+display: table;
+content: " ";
+}
+
+
+.add-media-btn:hover{
+background: #1446ff !important;
+}
+
+
+.site-navbar{
+background: #009688;
+height: 80px;
+padding-top: 5px;
+}
+
 .site-menu-items{
-    display: inline-grid;
+font-size: 15px;
+display: inline-grid;
 }
 
 .site-menu-items a{
-    margin-top: 27px;
-    margin-right: 120px;
-    color: white;
+margin-top: 27px;
+margin-right: 120px;
+color: white;
 }
 
 
 .name-header b {
-    color: white;
-    font-size: large;
+color: white;
+font-size: large;
 }
 
 .register-form {
-    width: 40%;
-    margin-right: 263px;
+width: 40%;
+margin-right: 263px;
 }
 
 .header-link {
-    margin-left: 20px;
-    margin-top: 6px;
+margin-left: 20px;
+margin-top: 6px;
 }
 
 .header-link a {
-      color: black;
+color: black;
 }
 
 .site-btn {
-    color: #fff;
-    background-color: teal;
-    border-color: white;
+color: #fff;
+background-color: teal;
+border-color: white;
 }
 
 .site-btn:hover, .site-btn:focus, .site-btn.focus {
-    color: white;
-    text-decoration: none;
-    background: darkslategrey;
+color: white;
+text-decoration: none;
+background: darkslategrey;
 }
 
 .site-header h1 {
-    text-shadow: 2px 2px 4px black;
-    font-size: 3em;
-    font-weight: bold;
-    margin-top: 12px;
-    color: white;
+text-shadow: 2px 2px 4px black;
+font-size: 3em;
+font-weight: bold;
+margin-top: 12px;
+color: white;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
