@@ -15,21 +15,18 @@ app.controller('userController',['$scope', '$stateParams', '$resource','userServ
         return true;
     };
 
-    $scope.addUser = function(){
+    $scope.register = function(){
         if(validateFields())
         {
-            $resource('/register/:first/:last/:userName/:password/:email',
-                {
-                    first: $scope.user.firstName,
-                    last: $scope.user.lastName,
-                    userName: $scope.user.userName,
-                    password: $scope.user.password,
-                    email: $scope.user.email
-                }, {
-                    'save': { method:'POST' }
+            $.ajax({
+                method   : 'POST',
+                url      : '/register',
+                data     : $scope.user,
+                dataType : 'json',
+                success: function() {
+                    userService.setLoggedUSer($scope.user);
+                    $state.go('home');
                 }
-            ).query(function(usr) {
-                userService.setLoggedUSer($scope.user);
             });
         }
     }
