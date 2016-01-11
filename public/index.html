@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html ng-app="summeriesApp">
+<html ng-app="summeriesApp" style="height: 100%">
 <head>
     <meta charset="utf-8" />
     <title>תקצירים - אתר תקצירי הסרטים והסדרות הטוב בארץ!</title>
@@ -18,6 +18,7 @@
     <script src="controllers/homeController.js"></script>
     <script src="controllers/searchController.js"></script>
     <script src="controllers/mediaController.js"></script>
+    <script src="controllers/userController.js"></script>
     <script src="routes/app.js"></script>
     <script src="services/home.js"></script>
     <script src="index.js"></script>
@@ -33,8 +34,21 @@
             </div>
             <b> שלום אורח</b>
             <div>
-                <label class="header-link">התחבר</label>
-                <label class="header-link">הרשם</label>
+                <label class="header-link" ng-if="user">
+                    <a ui-sref="login">
+התנתק
+                    </a>
+                </label>
+                <label class="header-link" ng-if="!user">
+                    <a ui-sref="login">
+                        התחבר
+                    </a>
+                </label>
+                <label class="header-link" ng-if="!user">
+                    <a ui-sref="register">
+הירשם
+                    </a>
+                </label>
             </div>
         </div>
         <div class="col-md-9" style="display: flex">
@@ -43,9 +57,9 @@
         </div>
     </div>
     <div class="site-menu row">
-        <label class="site-menu-items">
-            <a>
-                דף הבית
+        <label class="site-menu-items" ng-if="!user">
+            <a ui-sref="home">
+דף הבית
             </a>
         </label>
         <label class="site-menu-items">
@@ -58,17 +72,17 @@
                 כל הסדרות
             </a>
         </label>
-        <label class="site-menu-items">
-            <a>
+        <label class="site-menu-items" ng-if="user">
+            <a ui-sref="userDetails({userId: '{{user._id}}' })">
                 עריכת פרטי משתמש
             </a>
         </label>
-        <label class="site-menu-items">
+        <label class="site-menu-items" ng-if="user && user.type === 2">
         <a ui-sref="addMedia">
             הוספת מדיה
         </a>
         </label>
-        <label class="site-menu-items">
+        <label class="site-menu-items" ng-if="user && user.type === 2">
            <a>
                סטטיסטיקות
            </a>
@@ -80,7 +94,7 @@
     <div ui-view></div>
 </div>
 </body>
-<footer>
+<footer class="footer">
     <p>&#169; Yoni & Amit</p>
 </footer>
 </html>

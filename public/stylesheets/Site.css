@@ -44,6 +44,12 @@ footer p {
     border-right: 1px solid silver;
 }
 
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
 .comment-time-user {
     font-size: smaller;
 }
