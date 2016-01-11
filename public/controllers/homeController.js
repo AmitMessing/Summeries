@@ -1,9 +1,13 @@
 app = angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls']);
 
 app.controller('homeController',['$scope','$resource','$state','$uibModal','AllMedia', function ($scope, $resource, $state, $uibModal, AllMedia) {
-        $scope.getAllMedia = function() {
+    $scope.allMedia = [];
+    $scope.getAllMedia = function() {
             AllMedia.query(function (allMedia) {
-                $scope.allMedia = allMedia;
+                allMedia.map(function(media){
+                    media.releaseDate = new Date(media.releaseDate);
+                    $scope.allMedia.push(media);
+                });
             });
         };
 

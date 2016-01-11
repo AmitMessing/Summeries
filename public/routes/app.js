@@ -26,5 +26,11 @@ angular.module('uiRouterApp', [])
                     url:'/mediaDetails/:mediaId',
                     templateUrl:'templates/mediaDetails.html',
                     controller: 'mediaController'
+                }).
+                state('addMedia',
+                {
+                    url:'/addMedia',
+                    templateUrl:'templates/addMedia.html',
+                    controller:'addMediaController'
                 })
 }]);

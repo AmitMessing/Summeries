@@ -1,0 +1,120 @@
+<div>
+<form class="form-horizontal" ng-submit="submitForm()">
+    <div class="row">
+        <div class="form-group">
+סוג המדיה:
+            <div class="col-md-10">
+                <select ng-model="newMedia.mediaType" ng-options="key as val for (val,key) in enumMediaType"></select>
+            </div>
+        </div>
+        <div class="form-group">
+שם בעברית:
+            <div class="col-md-10">
+                <input type="text" ng-model="newMedia.hebrewTitle">
+            </div>
+        </div>
+
+        <div class="form-group">
+שם באנגלית:
+            <div class="col-md-10">
+                <input type="text" ng-model="newMedia.englishTitle">
+            </div>
+        </div>
+
+        <div class="form-group">
+            תאריך יציאה לעולם:
+            <div class="col-md-10">
+                <input type="date" class="form-control" uib-datepicker-popup ng-model="newMedia.releaseDate" datepicker-options="dateOptions" ng-required="true" />
+            </div>
+        </div>
+
+        <div class="form-group">
+ז'אנר:
+            <div class="col-md-10">
+                <label ng-repeat="category in categories" style="padding-left: 4px">
+                    <input
+                            type="checkbox"
+                            value="{{category}}"
+                            ng-checked="selection.indexOf(category) > -1"
+                            ng-click="toggleCategoriesSelection(category)"> {{category}}
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+מפיק:
+            <div class="col-md-10">
+                <input type="text" ng-model="newMedia.producers">
+            </div>
+        </div>
+
+        <div class="form-group">
+במאי:
+            <div class="col-md-10">
+                <input type="text" ng-model="newMedia.directors">
+            </div>
+        </div>
+
+        <div class="form-group">
+            שחקנים:
+            <div class="col-md-10">
+                <input type="text" ng-model="newMedia.actors">
+            </div>
+        </div>
+
+        <div class="form-group">
+            אורך:
+            <div class="col-md-10">
+                <input type="number" min="0" max="300" ng-model="newMedia.length">
+            </div>
+        </div>
+
+        <div class="form-group">
+            תקציר:
+            <div class="col-md-10">
+                <textarea ng-model="newMedia.summery"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            תמונה
+            <div class="col-md-10">
+                <input type="file" name="Image" id="Image" accept="Image/*" onchange="angular.element(this).scope().file_changed(this)"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning alert-dismissible" role="alert" id="image-error">
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="errorMsg"></span>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-10">
+            <input type="submit" class="btn btn-info" />
+        </div>
+    </div>
+</form>
+
+<script language="javascript" type="text/javascript">
+    $('.alert .close').on('click', function (e) {
+        $(this).parent().hide();
+    });
+
+    $('#image-error').hide();
+
+    function validateImageType() {
+        $file = $("#Image");
+        var $filePath = $.trim($file.val());
+
+        if ($filePath == "") {
+            $('#errorMsg').text("אנא בחר תמונה");
+            $('#image-error').show();
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</div>

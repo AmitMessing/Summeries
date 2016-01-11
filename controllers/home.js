@@ -15,6 +15,5 @@ exports.allMedia = function(req, res) {
             });
         }
         res.json(media);
-
     });
 };

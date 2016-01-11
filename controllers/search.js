@@ -67,7 +67,7 @@ var advancedSearch = function(res, searchQuery){
             case CATEGORY:
             {
                 var enmCategory = (tempStrings[1]);
-                searchResult = media.find({"category": enmCategory});
+                searchResult = media.find({"categories": enmCategory});
 
                 break;
             }
@@ -94,7 +94,7 @@ var advancedSearch = function(res, searchQuery){
                 if (tempStrings.length > 1)
                 {
                     var category = tempStrings[1];
-                    tempResult = tempResult.find({"category": category});
+                    tempResult = tempResult.find({"categories": category});
                 }
                 // that means we have a year.
                 if (tempStrings.length > 2)

@@ -4,6 +4,7 @@ angular.module('mediaApp', [])
 
         $scope.init = function(){
             $resource('/mediaDetails/:mediaId', { mediaId: mediaId}).get(function(media){
+                media.releaseDate = new Date(media.releaseDate);
                 $scope.media = media;
 
                 $.ajax({
@@ -45,4 +46,56 @@ angular.module('mediaApp', [])
             js.src = "http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js";
             stags.parentNode.insertBefore(js, stags);
         };
+    }])
+    .controller('addMediaController',['$scope', '$state', function ($scope,$state) {
+        $scope.enumMediaType = {
+            "בחר סוג": 0,
+            "סרט": 1,
+            "סדרה": 2
+        };
+        $scope.categories = ["קומדיה","דרמה","פעולה","רומנטיקה","אימה","אנימציה","פשע","מתח","פנטזיה","מדע בדיוני"];
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+        $scope.newMedia = {
+            releaseDate: new Date(),
+            mediaType: 0,
+            length: 0,
+            categories: []
+        };
+        $scope.toggleCategoriesSelection = function(categoryName){
+            var idx = $scope.newMedia.categories.indexOf(categoryName);
+
+            // is currently selected
+            if (idx > -1) {
+                $scope.newMedia.categories.splice(idx, 1);
+            }
+
+            // is newly selected
+            else {
+                $scope.newMedia.categories.push(categoryName);
+            }
+        };
+        $scope.file_changed = function(element) {
+            $scope.$apply(function(scope) {
+                var photofile = element.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $scope.newMedia.image = e.srcElement.result;
+                };
+                reader.readAsDataURL(photofile);
+            });
+        };
+        $scope.submitForm = function(){
+            $.ajax({
+                method   : 'POST',
+                url      : '/addMedia',
+                data     : $scope.newMedia,
+                dataType : 'json',
+                success: function() {
+                    $state.go('home');
+                }
+            });
+        }
     }]);

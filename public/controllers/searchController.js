@@ -5,7 +5,11 @@ angular.module('searchApp', [])
         $scope.init = function(){
             if (searchQuery) {
                 $resource('/searchResult/:searchQuery', {searchQuery: searchQuery}).query(function (searchResult) {
-                    $scope.searchResult = searchResult;
+                    $scope.searchResult = [];
+                    searchResult.map(function(media){
+                        media.releaseDate = new Date(media.releaseDate);
+                        $scope.searchResult.push(media);
+                    });
                 });
             }
         }

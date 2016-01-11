@@ -5,4 +5,7 @@ module.exports = function(app) {
 
     app.route('/mediaDetails/:mediaId')
         .get(media.mediaDetails);
+
+    app.route('/addMedia')
+        .post(media.addMedia);
 };

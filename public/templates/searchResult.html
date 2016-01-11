@@ -2,11 +2,11 @@
     <div class="site-content" ng-init="init()">
         <div class="row" style="height: 100%">
             <div class="col-md-12 content-column">
-                <div ng-if="searchResult" ng-repeat="media in searchResult">
+                <div ng-if="searchResult && searchResult.length > 0" ng-repeat="media in searchResult">
                     <div class="row search-content-row">
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-2">{{media.releaseDate}}</div>
+                            <div class="col-md-2">{{media.releaseDate.toLocaleDateString()}}</div>
                             <div class="col-md-10"><a ui-sref="mediaDetails({mediaId: '{{media._id}}' })">{{media.hebrewTitle}}</a></div>
                         </div>
                         <div class="row">
