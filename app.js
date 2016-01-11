@@ -25,12 +25,14 @@ MongoClient.connect(url, function(err, db) {
         homeRoute(app);
         searchRoute(app);
         mediaRoute(app);
+        userRoute(app);
     }
 });
 
 var homeRoute = require('./routes/home');
 var searchRoute = require('./routes/search');
 var mediaRoute = require('./routes/media');
+var userRoute = require('./routes/user');
 
 var app = express();
 
