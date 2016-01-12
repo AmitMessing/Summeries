@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 var mongodb = require('mongodb');
-var methodOverride = require('method-override');
 var cons = require('consolidate');
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
