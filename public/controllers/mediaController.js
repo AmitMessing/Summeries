@@ -1,5 +1,5 @@
 angular.module('mediaApp', [])
-    .controller('mediaController',['$scope', '$stateParams', '$resource', function ($scope,$stateParams,$resource) {
+    .controller('mediaController',['$scope', '$stateParams', '$resource', '$timeout', function ($scope,$stateParams,$resource,$timeout) {
         var mediaId = $stateParams.mediaId;
 
         $scope.init = function(){
@@ -16,6 +16,8 @@ angular.module('mediaApp', [])
                             '<img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>' +
                             '</a>' +
                             '</span>';
+
+                        initImdbApi(window.document, 'script', 'imdb-rating-api');
                     }
                 });
 
@@ -29,7 +31,6 @@ angular.module('mediaApp', [])
                 imageObj.src = media.image;
             });
 
-            initImdbApi(window.document, 'script', 'imdb-rating-api');
 
             /*if (window.document.getElementById("btnComment").name === "") {
                 window.document.getElementById("btnComment").disabled = true;
@@ -37,6 +38,8 @@ angular.module('mediaApp', [])
         };
 
         var initImdbApi = function (d, s, id) {
+            $('[id='+id+']').remove();
+
             var js, stags = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {
                 return;
