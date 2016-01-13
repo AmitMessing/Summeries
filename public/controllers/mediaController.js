@@ -1,6 +1,8 @@
 angular.module('mediaApp', [])
     .controller('mediaController',['$scope', '$stateParams', '$resource', '$timeout','userService', function ($scope,$stateParams,$resource,$timeout, userService) {
+
         $scope.user = userService.getLoggedUser();
+
         var mediaId = $stateParams.mediaId;
         $scope.media = {};
         $scope.comment = {
@@ -15,12 +17,13 @@ angular.module('mediaApp', [])
             $resource('/mediaDetails/:mediaId', { mediaId: mediaId}).get(function(media){
                 media.releaseDate = new Date(media.releaseDate);
                 $scope.media = media;
+
                 $scope.comment = {
                     title: "",
                     content: "",
                     date: "",
-                    mediaId: $scope.media._id,
-                    userId: $scope.user._id,
+                    mediaId: "",
+                    userId: "",
                 };
                 $.ajax({
                     dataType: "json",
@@ -56,8 +59,8 @@ angular.module('mediaApp', [])
             title: "",
             content: "",
             date: "",
-            mediaId: $scope.media._id,
-            userId: $scope.user._id,
+            mediaId: "",
+            userId: "",
         };
 
         var initImdbApi = function (d, s, id) {

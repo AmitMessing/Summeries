@@ -32,12 +32,15 @@
             <div>
                 <label class="header-link"></label>
             </div>
-            <b> שלום אורח</b>
+            <b>
+                שלום
+                {{user.userName}}
+            </b>
             <div>
                 <label class="header-link" ng-if="user">
-                    <a ui-sref="login">
-התנתק
-                    </a>
+                    <button class="logout-btn" ng-click="logout()">
+                        התנתק
+                    </button>
                 </label>
                 <label class="header-link" ng-if="!user">
                     <a ui-sref="login">
@@ -57,7 +60,7 @@
         </div>
     </div>
     <div class="site-menu row">
-        <label class="site-menu-items" ng-if="!user">
+        <label class="site-menu-items">
             <a ui-sref="home">
 דף הבית
             </a>

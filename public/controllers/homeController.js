@@ -1,9 +1,11 @@
 app = angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls']);
 
 app.controller('homeController',['$scope','$resource','$state','$window','AllMedia','userService', function ($scope, $resource, $state, $window, AllMedia, userService) {
-    $scope.user;
+    $scope.user = userService.getLoggedUser();
+
+
     function init() {
-        if ($window.sessionStorage["loggedUser"]) {
+        if ($window.sessionStorage.getItem("loggedUser")) {
             $scope.user = userService.getLoggedUser();
         }
     }

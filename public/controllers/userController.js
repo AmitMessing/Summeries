@@ -68,7 +68,7 @@ app.service('userService', ['$resource','$window', function($resource, $window) 
 
         var setLoggedUSer = function(usr){
             user = usr;
-           $window.sessionStorage["loggedUser"] = user;
+           $window.sessionStorage.setItem("loggedUser", user);
         };
 
         var getLoggedUser = function(){

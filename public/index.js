@@ -1,4 +1,4 @@
-﻿angular.module('summeriesApp',
+﻿mainApp = angular.module('summeriesApp',
     [
         'ngResource',
         'ui.router',
@@ -9,3 +9,4 @@
         'uiRouterApp'
     ]
 );
+
