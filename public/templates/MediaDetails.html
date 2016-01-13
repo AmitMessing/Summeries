@@ -26,7 +26,7 @@
                     <b> שנת יציאה:</b>{{media.releaseDate.toLocaleDateString()}}
                 </div>
                 <div class="row">
-                    <b> קטגוריה:</b>{{media.categories}}
+                    <b> קטגוריה:</b> <span ng-repeat="category in media.categories">{{category}}{{$last ? '' : ', '}}</span>
                 </div>
                 <div class="row">
                     <b> תקציר:</b>{{media.summery}}

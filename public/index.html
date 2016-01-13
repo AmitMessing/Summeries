@@ -11,6 +11,8 @@
     <script src="javascripts/angular-1.4.8/angular-resource.js"></script>
     <script src="javascripts/angular-ui-router.min.js"></script>
     <script src="javascripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="javascripts/d3js/d3.min.js"></script>
+    <script src="javascripts/d3js/Donut3D.js"></script>
 
     <link href="stylesheets/bootstrap.css" rel="stylesheet" />
     <link href="stylesheets/bootstrap-theme.css" rel="stylesheet" />
@@ -21,6 +23,7 @@
     <script src="controllers/searchController.js"></script>
     <script src="controllers/mediaController.js"></script>
     <script src="controllers/userController.js"></script>
+    <script src="controllers/statisticsController.js"></script>
     <script src="routes/app.js"></script>
 
     <base href="/">
@@ -86,7 +89,7 @@
         </a>
         </label>
         <label class="site-menu-items" ng-if="user && user.type === 2">
-           <a>
+           <a ui-sref="statistics">
                סטטיסטיקות
            </a>
         </label>

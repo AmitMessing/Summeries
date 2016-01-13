@@ -5,6 +5,7 @@
         'homeApp',
         'searchApp',
         'mediaApp',
+        'statisticsApp',
         'uiRouterApp'
     ]
 );

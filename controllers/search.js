@@ -13,21 +13,6 @@ enumMediaType = {
     Series: 2
 };
 
-/*
- enumCategories = {
- Comedy: 0,
- Drama: 1,
- Action: 2,
- Romance: 3,
- Horror: 4,
- Animation: 5,
- Crime: 6,
- Thriller: 7,
- Fantasy: 8,
- SciFi: 9
- }
- */
-
 exports.searchResult = function(req, res) {
     var path = require('path');
     res.sendFile(path.join(__dirname, '../public/', 'index.html'));

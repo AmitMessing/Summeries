@@ -25,6 +25,7 @@ MongoClient.connect(url, function(err, db) {
         searchRoute(app);
         mediaRoute(app);
         userRoute(app);
+        statisticsRoute(app);
     }
 });
 
@@ -32,6 +33,7 @@ var homeRoute = require('./routes/home');
 var searchRoute = require('./routes/search');
 var mediaRoute = require('./routes/media');
 var userRoute = require('./routes/user');
+var statisticsRoute = require('./routes/statistics');
 
 var app = express();
 

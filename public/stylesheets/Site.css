@@ -268,3 +268,26 @@ textarea {
     padding-top: 10px;
     height: 240px;
 }
+
+#barChart .bar {
+    fill: steelblue;
+}
+
+#barChart .bar:hover {
+    fill: brown;
+}
+
+#barChart .axis path,
+#barChart .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#barChart .x.axis path {
+    display: none;
+}
+
+#barChart .y.axis .tick text {
+    text-anchor: start !important;
+}

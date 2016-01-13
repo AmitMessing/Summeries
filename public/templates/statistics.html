@@ -1,0 +1,23 @@
+<div ng-init="init()">
+    <div class="site-content">
+        <div class="row">
+            <div class="col-md-12"><h4>סטטיסטיקה של מספר תגובות לכל קטגוריה של סרטים:</h4></div>
+        </div>
+        <div class="row">
+            <div id="donut" class="col-md-8" />
+            <div class="col-md-4">
+                <div class="row" ng-repeat="data in donutData">
+                    <div class="col-md-3"> {{data.categoryName}} </div>
+                    <div class="col-md-9" style="height: 13px; width: 3px; background-color: {{data.color}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><h4>סטטיסטיקה של מספר סרטים מכל קטגוריה:</h4></div>
+        </div>
+        <div class="row">
+            <div id="barChart" class="col-md-12" />
+        </div>
+    </div>
+</div>
