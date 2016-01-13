@@ -1,12 +1,27 @@
 angular.module('mediaApp', [])
-    .controller('mediaController',['$scope', '$stateParams', '$resource', '$timeout', function ($scope,$stateParams,$resource,$timeout) {
+    .controller('mediaController',['$scope', '$stateParams', '$resource', '$timeout','userService', function ($scope,$stateParams,$resource,$timeout, userService) {
+        $scope.user = userService.getLoggedUser();
         var mediaId = $stateParams.mediaId;
+        $scope.media = {};
+        $scope.comment = {
+            title: "",
+            content: "",
+            date: "",
+            mediaId: "",
+            userId: "",
+        };
 
         $scope.init = function(){
             $resource('/mediaDetails/:mediaId', { mediaId: mediaId}).get(function(media){
                 media.releaseDate = new Date(media.releaseDate);
                 $scope.media = media;
-
+                $scope.comment = {
+                    title: "",
+                    content: "",
+                    date: "",
+                    mediaId: $scope.media._id,
+                    userId: $scope.user._id,
+                };
                 $.ajax({
                     dataType: "json",
                     url: "http://www.omdbapi.com/?t=" + media.englishTitle,
@@ -35,6 +50,14 @@ angular.module('mediaApp', [])
             /*if (window.document.getElementById("btnComment").name === "") {
                 window.document.getElementById("btnComment").disabled = true;
             }*/
+        };
+
+        $scope.comment = {
+            title: "",
+            content: "",
+            date: "",
+            mediaId: $scope.media._id,
+            userId: $scope.user._id,
         };
 
         var initImdbApi = function (d, s, id) {

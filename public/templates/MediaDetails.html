@@ -34,78 +34,71 @@
             </div>
 
         </div>
-        <!--<div class="row comments-content">
+        <div class="row comments-content">
             <div class="col-md-6">
                 <section>
-                    <h3>תגובות:</h3>
-                    @using (Html.BeginForm("AddComment", "Media", FormMethod.Post, new {comment = Model.Comment}))
-                    {
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(item => item.Comment.MediaId)
+                    <h3>
+                        הוסף תגובה:
+                    </h3>
                     <div class="form-horizontal" style="padding-right: 15px;">
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Comment.Title, new {htmlAttributes = new {@class = "form-control"}})
-                                    @Html.ValidationMessageFor(model => model.Comment.Title)
+                                    <input type="text" ng-model="comment.title" style="width:100%"  ng-disabled="!user._id">
                                 </div>
                                 <div class="col-md-2">
-                                    @Html.DisplayNameFor(model => Model.Comment.Title)
+                                    <label>
+                                        כותרת
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.Comment.Content, new {@cols = 37})
-                                    @Html.ValidationMessageFor(model => model.Comment.Content)
+                                    <input type="text" ng-model="comment.content" style="width:100%"  ng-disabled="!user._id">
                                 </div>
                                 <div class="col-md-2">
-                                    @Html.DisplayNameFor(model => Model.Comment.Content)
+                                    <label>
+                                        תוכן
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="submit" value="הוסף תגובה" id="btnComment" class="btn site-btn" name="@Session["LoggedinUserName"]">
+                            <input type="submit" ng-if="user._id" value="הוסף תגובה"  id="btnComment" class="btn site-btn" name="@Session["LoggedinUserName"]">
                             <label class="label label-primary" id="CommentError">שים לב! רק משתמשים מחוברים יכולים להגיב</label>
                         </div>
                     </div>
-                    }
                 </section>
             </div>
             <div class="col-md-6">
                 <h3>תגובות:</h3>
-                @foreach (var comment in Model.Media.Comments)
-                {
-                @Html.HiddenFor(item => comment.Id)
-                <div class="comment-design">
+                <div ng-repeat="comment in media.comments">
+                    <div class="comment-design">
                     <aside>
                         <div class="row">
                             <div class="col-md-2">
-                                @if (Session["LoggedinUserType"] != null && Session["LoggedinUserType"].ToString() == "Manager")
-                                {
-                                <a href="@Url.Action("DeleteComment", "Media", new {id = comment.Id})">
                                 <span class="btn glyphicon glyphicon-trash"></span>
                                 </a>
-                                }
                             </div>
-                            <div class="col-md-10 comment-time-user">@Html.DisplayFor(item => comment.Date) - @Session["LoggedinUserName"] </div>
+                            <div class="col-md-10 comment-time-user">{{comment.date}} - {{user.userName}} </div>
                         </div>
                     </aside>
                     <div class="row">
                         <div class="col-md-12">
-                            <b>@Html.DisplayFor(item => comment.Title)</b>
+                            <b>{{comment.title}}</b>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 comment-content-size">
-                            @Html.DisplayFor(item => comment.Content)
+                         {{comment.content}}
                         </div>
                     </div>
                 </div>
-                }
+                </div>
             </div>
-        </div>-->
+        </div>
     </div>
 </div>
 
