@@ -39,6 +39,12 @@ angular.module('uiRouterApp', [])
                     templateUrl:'templates/register.html',
                     controller: 'userController'
                 }).
+                state('login',
+                {
+                    url:'/login',
+                    templateUrl:'templates/login.html',
+                    controller: 'userController'
+                }).
                 state('addMedia',
                 {
                     url:'/addMedia',

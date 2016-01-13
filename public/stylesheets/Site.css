@@ -44,6 +44,15 @@ footer p {
     border-right: 1px solid silver;
 }
 
+.logout-btn{
+    border: none;
+    background: transparent;
+}
+
+.logout-btn:hover:focus{
+    text-decoration: underline;
+}
+
 .footer{
     position: fixed;
     bottom: 0px;

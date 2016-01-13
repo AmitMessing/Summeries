@@ -8,7 +8,7 @@ angular.module('mediaApp', [])
             content: "",
             date: "",
             mediaId: "",
-            userId: "",
+            userId: ""
         };
 
         $scope.init = function(){

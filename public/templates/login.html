@@ -1,0 +1,36 @@
+<div class="form-horizontal register-form">
+    <fieldset>
+        <legend>התחברות</legend>
+        <div class="form-group">
+            <label>
+    שם משתמש
+            </label>
+            <div class="col-md-9">
+                <input type="text" ng-model="loginDetails.userName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+    סיסמא
+            </label>
+            <div class="col-md-9">
+                <input type="text" ng-model="loginDetails.password">
+            </div>
+        </div>
+        <div class="form-group">
+            <button ng-click="login()" class="btn site-btn"> התחבר</button>
+        </div>
+        <div>
+            <label>
+                <a ui-sref="register">
+                    אין לך משתמש ? הירשם עכשיו
+                </a>
+            </label>
+        </div>
+    </fieldset>
+    <div ng-if="error != ''">
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+        </div>
+    </div>
+</div>

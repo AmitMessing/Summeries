@@ -1,7 +1,14 @@
 app = angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls']);
 
-app.controller('homeController',['$scope','$resource','$state','$uibModal','AllMedia','userService', function ($scope, $resource, $state, $uibModal, AllMedia, userService) {
-    $scope.user = userService.getLoggedUser();
+app.controller('homeController',['$scope','$resource','$state','$window','AllMedia','userService', function ($scope, $resource, $state, $window, AllMedia, userService) {
+    $scope.user;
+    function init() {
+        if ($window.sessionStorage["loggedUser"]) {
+            $scope.user = userService.getLoggedUser();
+        }
+    }
+
+    init();
     $scope.allMedia = [];
     $scope.getAllMedia = function() {
             AllMedia.query(function (allMedia) {
@@ -11,6 +18,10 @@ app.controller('homeController',['$scope','$resource','$state','$uibModal','AllM
                 });
             });
         };
+    $scope.logout = function(){
+        userService.setLoggedUSer(null);
+        $scope.user = JSON.parse($window.sessionStorage["loggedUser"]);
+    };
 
         $scope.addMedia = function(){
             var modalInstance = $uibModal.open({
