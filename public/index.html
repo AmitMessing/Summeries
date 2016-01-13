@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>תקצירים - אתר תקצירי הסרטים והסדרות הטוב בארץ!</title>
+
     <script src="javascripts/jquery-2.1.4.min.js"></script>
     <script src="javascripts/bootstrap.js"></script>
     <script src="javascripts/angular-1.4.8/angular.js"></script>
@@ -15,18 +16,17 @@
     <link href="stylesheets/bootstrap-theme.css" rel="stylesheet" />
     <link href="stylesheets/Site.css" rel="stylesheet" />
 
+    <script src="index.js"></script>
     <script src="controllers/homeController.js"></script>
     <script src="controllers/searchController.js"></script>
     <script src="controllers/mediaController.js"></script>
     <script src="controllers/userController.js"></script>
     <script src="routes/app.js"></script>
-    <script src="services/home.js"></script>
-    <script src="index.js"></script>
 
     <base href="/">
 </head>
 <body dir="rtl">
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="navbarController">
     <div class="site-header row">
         <div class="col-md-2 name-header">
             <div>

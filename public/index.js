@@ -5,8 +5,17 @@
         'homeApp',
         'searchApp',
         'mediaApp',
-        'homeService',
         'uiRouterApp'
     ]
 );
+
+mainApp.controller('navbarController', ['$scope', 'userService', function($scope, userService){
+        $scope.$watch(function () { return userService.getLoggedUser() }, function(newValue, oldvalue){
+                $scope.user = newValue;
+        });
+
+        $scope.logout = function(){
+                userService.setLoggedUSer(null);
+        };
+}]);
 

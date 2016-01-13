@@ -1,4 +1,4 @@
-app.controller('userController',['$scope', '$stateParams', '$resource','$state','userService', function ($scope, $stateParams, $resource, $state, userService) {
+mainApp.controller('userController',['$scope','$state','userService', function ($scope, $state, userService) {
     $scope.user = userService.getLoggedUser();
     $scope.error = "";
     $scope.loginDetails = {
@@ -25,10 +25,6 @@ app.controller('userController',['$scope', '$stateParams', '$resource','$state',
           return false;
       }
         return true;
-    };
-
-    $scope.logout = function(){
-        userService.setLoggedUSer({});
     };
 
     $scope.login = function (){
@@ -63,12 +59,12 @@ app.controller('userController',['$scope', '$stateParams', '$resource','$state',
         }
     }
 }]);
-app.service('userService', ['$resource','$window', function($resource, $window) {
+
+mainApp.service('userService', function() {
         var user = null;
 
         var setLoggedUSer = function(usr){
             user = usr;
-           $window.sessionStorage.setItem("loggedUser", user);
         };
 
         var getLoggedUser = function(){
@@ -81,5 +77,5 @@ app.service('userService', ['$resource','$window', function($resource, $window) 
             setLoggedUSer: setLoggedUSer,
             getLoggedUser: getLoggedUser
         };
-    }]
+    }
 );

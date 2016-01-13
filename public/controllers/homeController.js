@@ -1,29 +1,14 @@
-app = angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls']);
-
-app.controller('homeController',['$scope','$resource','$state','$window','AllMedia','userService', function ($scope, $resource, $state, $window, AllMedia, userService) {
-    $scope.user = userService.getLoggedUser();
-
-
-    function init() {
-        if ($window.sessionStorage.getItem("loggedUser")) {
-            $scope.user = userService.getLoggedUser();
-        }
-    }
-
-    init();
-    $scope.allMedia = [];
-    $scope.getAllMedia = function() {
-            AllMedia.query(function (allMedia) {
-                allMedia.map(function(media){
-                    media.releaseDate = new Date(media.releaseDate);
-                    $scope.allMedia.push(media);
+angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls'])
+    .controller('homeController',['$scope','$resource', function ($scope,$resource) {
+        $scope.allMedia = [];
+        $scope.getAllMedia = function() {
+            $resource('/home/getAllMedia').query(function (allMedia) {
+                    allMedia.map(function(media){
+                        media.releaseDate = new Date(media.releaseDate);
+                        $scope.allMedia.push(media);
+                    });
                 });
-            });
-        };
-    $scope.logout = function(){
-        userService.setLoggedUSer(null);
-        $scope.user = JSON.parse($window.sessionStorage["loggedUser"]);
-    };
+            };
 
         $scope.addMedia = function(){
             var modalInstance = $uibModal.open({
@@ -37,8 +22,7 @@ app.controller('homeController',['$scope','$resource','$state','$window','AllMed
                 }
             });
         }
-    }]);
-app.controller('addMediaController',['$scope','$resource','$state','$uibModal','AllMedia'
-    ,function ($scope, $resource, $state, $uibModal, AllMedia) {
+    }])
+    .controller('addMediaController',['$scope','$resource','$state','$uibModal','AllMedia',function ($scope, $resource, $state, $uibModal, AllMedia) {
 
     }]);
