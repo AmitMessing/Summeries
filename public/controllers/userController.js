@@ -1,4 +1,4 @@
-app.controller('userController',['$scope', '$stateParams', '$resource','userService', function ($scope, $stateParams, $resource, userService) {
+app.controller('userController',['$scope', '$stateParams', '$resource','$state','userService', function ($scope, $stateParams, $resource, $state, userService) {
     $scope.user = userService.getLoggedUser();
     $scope.error = "";
 
