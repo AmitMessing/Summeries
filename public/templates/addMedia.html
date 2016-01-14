@@ -84,9 +84,10 @@
         </div>
     </div>
 
-    <div class="alert alert-warning alert-dismissible" role="alert" id="image-error">
-        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="errorMsg"></span>
+    <div ng-if="error">
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+        </div>
     </div>
 
     <div class="form-group row">

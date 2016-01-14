@@ -13,42 +13,58 @@ angular.module('mediaApp', [])
             userId: ""
         };
 
+        var validateFields = function(){
+            if($scope.media.mediaType === "" || $scope.media.mediaType === undefined ||
+                $scope.media.hebrewTitle === "" || $scope.media.hebrewTitle === undefined ||
+                $scope.media.englishTitle === "" ||  $scope.media.englishTitle === undefined ||
+                $scope.media.releaseDate === "" || $scope.media.releaseDate ===  undefined||
+                $scope.media.categories === "" || $scope.media.categories === undefined ||
+                $scope.media.length === "" || $scope.media.length === undefined ||
+                $scope.media.directors === "" || $scope.media.directors === undefined ||
+                $scope.media.producers === "" || $scope.media.producers === undefined ||
+                $scope.media.actors === "" || $scope.media.actors === undefined)
+            {
+                $scope.error = "נא למלא את כל השדות";
+                return false;
+            }
+            return true;
+        };
+
         $scope.init = function(){
-            $resource('/mediaDetails/:mediaId', { mediaId: mediaId}).get(function(media){
-                media.releaseDate = new Date(media.releaseDate);
-                $scope.media = media;
+                $resource('/mediaDetails/:mediaId', {mediaId: mediaId}).get(function (media) {
+                    media.releaseDate = new Date(media.releaseDate);
+                    $scope.media = media;
 
-                $scope.comment = {
-                    title: "",
-                    content: "",
-                    date: "",
-                    mediaId: "",
-                    userId: "",
-                };
-                $.ajax({
-                    dataType: "json",
-                    url: "http://www.omdbapi.com/?t=" + media.englishTitle,
-                    success: function (result) {
-                        $('#imdbRating')[0].innerHTML = '<span class="imdbRatingPlugin" data-user="ur62979138" data-title="' + result.imdbID + '" data-style="p3">' +
-                            '<a href="http://www.imdb.com/title/' + result.imdbID + '/?ref_=plg_rt_1">' +
-                            '<img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>' +
-                            '</a>' +
-                            '</span>';
+                    $scope.comment = {
+                        title: "",
+                        content: "",
+                        date: "",
+                        mediaId: "",
+                        userId: "",
+                    };
+                    $.ajax({
+                        dataType: "json",
+                        url: "http://www.omdbapi.com/?t=" + media.englishTitle,
+                        success: function (result) {
+                            $('#imdbRating')[0].innerHTML = '<span class="imdbRatingPlugin" data-user="ur62979138" data-title="' + result.imdbID + '" data-style="p3">' +
+                                '<a href="http://www.imdb.com/title/' + result.imdbID + '/?ref_=plg_rt_1">' +
+                                '<img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>' +
+                                '</a>' +
+                                '</span>';
 
-                        initImdbApi(window.document, 'script', 'imdb-rating-api');
-                    }
+                            initImdbApi(window.document, 'script', 'imdb-rating-api');
+                        }
+                    });
+
+                    var canvas = window.document.getElementById('mediaPic');
+                    var context = canvas.getContext('2d');
+                    var imageObj = new Image();
+
+                    imageObj.onload = function () {
+                        context.drawImage(imageObj, 0, 0, 400, 494);
+                    };
+                    imageObj.src = media.image;
                 });
-
-                var canvas = window.document.getElementById('mediaPic');
-                var context = canvas.getContext('2d');
-                var imageObj = new Image();
-
-                imageObj.onload = function () {
-                    context.drawImage(imageObj, 0, 0, 400, 494);
-                };
-                imageObj.src = media.image;
-            });
-
 
             /*if (window.document.getElementById("btnComment").name === "") {
                 window.document.getElementById("btnComment").disabled = true;
@@ -117,14 +133,17 @@ angular.module('mediaApp', [])
             });
         };
         $scope.submitForm = function(){
-            $.ajax({
-                method   : 'POST',
-                url      : '/addMedia',
-                data     : $scope.newMedia,
-                dataType : 'json',
-                success: function() {
-                    $state.go('home');
-                }
-            });
+
+            if(validateFields()) {
+                $.ajax({
+                    method: 'POST',
+                    url: '/addMedia',
+                    data: $scope.newMedia,
+                    dataType: 'json',
+                    success: function () {
+                        $state.go('home');
+                    }
+                });
+            }
         }
     }]);
