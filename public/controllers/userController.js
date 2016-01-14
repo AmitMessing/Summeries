@@ -1,5 +1,5 @@
 mainApp.controller('userController',['$scope','$state','userService', function ($scope, $state, userService) {
-    $scope.user = userService.getLoggedUser();
+    $scope.user = undefined;
     $scope.error = "";
     $scope.loginDetails = {
         userName: "",
@@ -60,22 +60,24 @@ mainApp.controller('userController',['$scope','$state','userService', function (
     }
 }]);
 
-mainApp.service('userService', function() {
-        var user = null;
-
+mainApp.service('userService',['$cookies', '$state', function($cookies,$state) {
         var setLoggedUSer = function(usr){
-            user = usr;
+            $cookies.put("loggedUser", JSON.stringify(usr));
         };
 
         var getLoggedUser = function(){
-            if(user) {
-                return user;
-            }
+            return $cookies.get("loggedUser");
+        };
+
+        var logout = function(){
+            $cookies.remove("loggedUser");
+            $state.go('home');
         };
 
         return {
             setLoggedUSer: setLoggedUSer,
-            getLoggedUser: getLoggedUser
+            getLoggedUser: getLoggedUser,
+            logout: logout,
         };
-    }
+    }]
 );

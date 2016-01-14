@@ -6,17 +6,23 @@
         'searchApp',
         'mediaApp',
         'statisticsApp',
-        'uiRouterApp'
+        'uiRouterApp',
+        'ngCookies'
     ]
 );
 
 mainApp.controller('navbarController', ['$scope', 'userService', function($scope, userService){
-        $scope.$watch(function () { return userService.getLoggedUser() }, function(newValue, oldvalue){
-                $scope.user = newValue;
+        $scope.$watch(function () { return userService.getLoggedUser() }, function(newValue, oldValue){
+                if(newValue){
+                        $scope.user = JSON.parse(newValue);
+                }
+                else{
+                        $scope.user = newValue;
+                }
         });
 
         $scope.logout = function(){
-                userService.setLoggedUSer(null);
+                userService.logout();
         };
 }]);
 
