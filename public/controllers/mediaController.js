@@ -3,10 +3,6 @@ angular.module('mediaApp', [])
 
         $scope.user = userService.getLoggedUser();
         var mediaId = $stateParams.mediaId;
-        $scope.commen = {
-            title: "",
-            content: ""
-        };
         $scope.media = {};
 
         $scope.addComment = function(){

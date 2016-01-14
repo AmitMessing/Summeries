@@ -8,4 +8,7 @@ module.exports = function(app) {
 
     app.route('/login')
         .post(user.login);
+
+    app.route('/updateUser')
+        .post(user.updateUser);
 };

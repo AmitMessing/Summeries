@@ -1,5 +1,5 @@
 mainApp.controller('userController',['$scope','$state','userService', function ($scope, $state, userService) {
-    $scope.user = undefined;
+    $scope.user = JSON.parse(userService.getLoggedUser());
     $scope.error = "";
     $scope.loginDetails = {
         userName: "",
@@ -58,6 +58,30 @@ mainApp.controller('userController',['$scope','$state','userService', function (
             });
         }
     }
+    $scope.userDetails = JSON.parse(userService.getLoggedUser());
+
+    $scope.updateUserDetails = function(){
+        if(validateFields())
+        {
+            $.ajax({
+                method   : 'POST',
+                url      : '/updateUser',
+                data     : $scope.userDetails,
+                dataType : 'json',
+                success: function(result) {
+                    if(result.error != null || result.error != undefined)
+                    {
+                        $scope.error = "שם משתמש כבר קיים";
+                    }
+                    else {
+                        userService.setLoggedUSer(result);
+                        $state.go('home');
+                    }
+                }
+            });
+
+        }
+    };
 }]);
 
 mainApp.service('userService',['$cookies', '$state', function($cookies,$state) {

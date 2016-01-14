@@ -27,9 +27,9 @@ angular.module('uiRouterApp', [])
                     templateUrl:'templates/mediaDetails.html',
                     controller: 'mediaController'
                 }).
-                state('userDetails',
+                state('updateUser',
                 {
-                    url:'/userDetails/:userId',
+                    url:'/updateUser',
                     templateUrl:'templates/userDetails.html',
                     controller: 'userController'
                 }).
