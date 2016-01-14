@@ -1,5 +1,5 @@
 <div>
-<form class="form-horizontal" ng-submit="submitForm()">
+<form class="form-horizontal add-media-form" ng-submit="submitForm()">
     <div class="row">
         <div class="form-group">
 סוג המדיה:
@@ -103,19 +103,6 @@
     });
 
     $('#image-error').hide();
-
-    function validateImageType() {
-        $file = $("#Image");
-        var $filePath = $.trim($file.val());
-
-        if ($filePath == "") {
-            $('#errorMsg').text("אנא בחר תמונה");
-            $('#image-error').show();
-            return false;
-        }
-
-        return true;
-    }
 </script>
 
 </div>

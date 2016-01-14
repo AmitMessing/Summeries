@@ -29,23 +29,6 @@ angular.module('mediaApp', [])
             }
         };
 
-        var validateFields = function(){
-            if($scope.media.mediaType === "" || $scope.media.mediaType === undefined ||
-                $scope.media.hebrewTitle === "" || $scope.media.hebrewTitle === undefined ||
-                $scope.media.englishTitle === "" ||  $scope.media.englishTitle === undefined ||
-                $scope.media.releaseDate === "" || $scope.media.releaseDate ===  undefined||
-                $scope.media.categories === "" || $scope.media.categories === undefined ||
-                $scope.media.length === "" || $scope.media.length === undefined ||
-                $scope.media.directors === "" || $scope.media.directors === undefined ||
-                $scope.media.producers === "" || $scope.media.producers === undefined ||
-                $scope.media.actors === "" || $scope.media.actors === undefined)
-            {
-                $scope.error = "נא למלא את כל השדות";
-                return false;
-            }
-            return true;
-        };
-
         $scope.init = function(){
                 $resource('/mediaDetails/:mediaId', {mediaId: mediaId}).get(function (media) {
                     media.releaseDate = new Date(media.releaseDate);
@@ -117,6 +100,39 @@ angular.module('mediaApp', [])
             length: 0,
             categories: []
         };
+
+        function validateImageType() {
+            $file = $("#Image");
+            var $filePath = $.trim($file.val());
+
+            if ($filePath == "") {
+                $('#errorMsg').text("אנא בחר תמונה");
+                $('#image-error').show();
+                return false;
+            }
+
+            return true;
+        }
+
+        var validateFields = function(){
+            if($scope.newMedia.mediaType === "" || $scope.newMedia.mediaType === undefined ||
+                $scope.newMedia.hebrewTitle === "" || $scope.newMedia.hebrewTitle === undefined ||
+                $scope.newMedia.englishTitle === "" ||  $scope.newMedia.englishTitle === undefined ||
+                $scope.newMedia.releaseDate === "" || $scope.newMedia.releaseDate ===  undefined||
+                $scope.newMedia.categories === "" || $scope.newMedia.categories === undefined ||
+                $scope.newMedia.length === "" || $scope.newMedia.length === undefined ||
+                $scope.newMedia.directors === "" || $scope.newMedia.directors === undefined ||
+                $scope.newMedia.producers === "" || $scope.newMedia.producers === undefined ||
+                $scope.newMedia.actors === "" || $scope.newMedia.actors === undefined ||
+                !validateImageType())
+            {
+                $scope.error = "נא למלא את כל השדות";
+                return false;
+            }
+            $scope.error = null;
+            return true;
+        };
+
         $scope.toggleCategoriesSelection = function(categoryName){
             var idx = $scope.newMedia.categories.indexOf(categoryName);
 
