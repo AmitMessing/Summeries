@@ -2,7 +2,7 @@ var mediaCollection = global.myDb.collection('media');
 //var dict = require("dict");
 
 exports.donutData = function(req, res){
-    mediaCollection.find(/*{"comments":{$size:{$gt:0}}}*/).toArray(function(err, searchResult){
+    mediaCollection.find({"comments.0":{"$exists":true}}).toArray(function(err, searchResult){
         if (err) {
             return res.status(500).json({
                 error: 'error occured while getting donut statistic data'
