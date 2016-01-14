@@ -11,4 +11,7 @@ module.exports = function(app) {
 
     app.route('/updateUser')
         .post(user.updateUser);
+
+    app.route('/deleteUser/:id')
+        .delete(user.deleteUser);
 };

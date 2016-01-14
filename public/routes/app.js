@@ -62,5 +62,11 @@ angular.module('uiRouterApp', [])
                     url:'/addComment',
                     templateUrl:'templates/mediaDetails.html',
                     controller:'mediaController'
+                }).
+                state('/deleteUser/:id',
+                {
+                    url:'/deleteUser/:id',
+                    templateUrl:'templates/userDetails.html',
+                    controller:'userController'
                 })
 }]);

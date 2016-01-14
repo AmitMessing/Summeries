@@ -13,6 +13,20 @@ exports.login = function(req, res){
      })
 };
 
+exports.deleteUser = function(req, res){
+    var id = req.params.id;
+    var o_id = new ObjectID(id);
+    userCollection.remove({'_id': o_id},true ,
+        function(err, result) {
+            if (err) {
+                return res.status(500).json({
+                    error: 'error occured while searching for media'
+                });
+            }
+            res.json({status: "success"});
+    });
+};
+
 exports.updateUser = function(req,res){
     var id = req.body._id;
     var o_id = new ObjectID(id);

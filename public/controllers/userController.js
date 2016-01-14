@@ -1,4 +1,4 @@
-mainApp.controller('userController',['$scope','$state','userService', function ($scope, $state, userService) {
+mainApp.controller('userController',['$scope','$state','$resource','userService', function ($scope, $state,$resource, userService) {
     var user = userService.getLoggedUser();
     if(user != null)
     {
@@ -31,6 +31,22 @@ mainApp.controller('userController',['$scope','$state','userService', function (
           return false;
       }
         return true;
+    };
+
+    $scope.deleteUser = function(){
+       var query = $resource('/deleteUser/:id', {id:$scope.user._id},
+            {
+                deleteUser:
+                {
+                    method: 'DELETE'
+                }
+            });
+        query.deleteUser(function(){
+            userService.setLoggedUSer(null);
+            $state.go('home')
+        },function(){
+
+        });
     };
 
     $scope.login = function (){
