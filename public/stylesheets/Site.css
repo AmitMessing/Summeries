@@ -34,6 +34,14 @@ footer p {
     box-shadow: 0px 0px 3px darkgrey;
 }
 
+.comment-alert{
+    position: fixed;
+    bottom: 34px;
+    left: 0px;
+    width: 36%;
+    height: 52px;
+}
+
 .comment-design h2 {
     margin-top: 0px;
 }
