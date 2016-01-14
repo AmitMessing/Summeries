@@ -1,6 +1,27 @@
 angular.module('mediaApp', [])
     .controller('mediaController',['$scope','$window','$stateParams', '$resource', '$timeout','userService', function ($scope,$window, $stateParams, $resource, $timeout, userService) {
 
+        $scope.allMovies = [];
+        $scope.getAllMovies = function() {
+            $resource('/getAllMovies').query(function (allMedia) {
+                allMedia.map(function(media){
+                    media.releaseDate = new Date(media.releaseDate);
+                    $scope.allMovies.push(media);
+                });
+            });
+        };
+
+        $scope.allSeries = [];
+        $scope.getAllSeries = function() {
+            $resource('/getAllSeries').query(function (allMedia) {
+                allMedia.map(function(media){
+                    media.releaseDate = new Date(media.releaseDate);
+                    $scope.allSeries.push(media);
+                });
+            });
+        };
+
+
         $scope.user = userService.getLoggedUser();
         var mediaId = $stateParams.mediaId;
         $scope.media = {};

@@ -21,6 +21,16 @@ angular.module('uiRouterApp', [])
                     templateUrl: 'templates/searchResult.html',
                     controller: 'searchController'
                 }).
+                state('getAllMovies', {
+                    url: '/getAllMovies',
+                    templateUrl: 'templates/allMovies.html',
+                    controller: 'mediaController'
+                }).
+                state('getAllSeries', {
+                    url: '/getAllSeries',
+                    templateUrl: 'templates/allSeries.html',
+                    controller: 'mediaController'
+                }).
                 state('mediaDetails',
                 {
                     url:'/mediaDetails/:mediaId',

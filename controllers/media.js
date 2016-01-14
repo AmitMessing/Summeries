@@ -42,6 +42,28 @@ exports.addComment = function(req,res){
     });
 };
 
+exports.getAllMovies = function(req,res){
+    mediaDb.find({mediaType: "1"}).toArray(function(err, media) {
+        if (err) {
+            return res.status(500).json({
+                error: 'error in getting all media'
+            });
+        }
+        res.json(media);
+    });
+};
+
+exports.getAllSeries = function(req,res){
+    mediaDb.find({mediaType: "2"}).toArray(function(err, media) {
+        if (err) {
+            return res.status(500).json({
+                error: 'error in getting all media'
+            });
+        }
+        res.json(media);
+    });
+};
+
 exports.addMedia = function(req,res){
     var newMedia = {
         actors: req.body.actors,

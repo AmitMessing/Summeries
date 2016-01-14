@@ -1,0 +1,24 @@
+<div>
+    <div class="site-content" ng-init="getAllSeries()">
+        <div class="row" style="height: 100%">
+            <div class="col-md-12 content-column">
+                <div ng-repeat="series in allSeries">
+                    <div class="row search-content-row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-2">{{series.releaseDate.toLocaleDateString()}}</div>
+                                <div class="col-md-10"><a ui-sref="mediaDetails({mediaId: '{{series._id}}' })">{{series.hebrewTitle}}</a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="height: 170px">{{series.summery}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <img style="width: 100%; height: 230px" ng-src="{{series.image}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

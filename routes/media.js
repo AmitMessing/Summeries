@@ -11,4 +11,10 @@ module.exports = function(app) {
 
     app.route('/addComment')
         .post(media.addComment);
+
+    app.route('/getAllMovies')
+        .get(media.getAllMovies);
+
+    app.route('/getAllSeries')
+        .get(media.getAllSeries);
 };
