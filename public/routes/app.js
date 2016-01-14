@@ -56,5 +56,11 @@ angular.module('uiRouterApp', [])
                     url:'/statistics',
                     templateUrl:'templates/statistics.html',
                     controller:'statisticsController'
+                }).
+                state('addComment',
+                {
+                    url:'/addComment',
+                    templateUrl:'templates/mediaDetails.html',
+                    controller:'mediaController'
                 })
 }]);

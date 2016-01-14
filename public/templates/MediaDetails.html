@@ -66,8 +66,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="submit" ng-if="user" value="הוסף תגובה"  id="btnComment" class="btn site-btn">
+                            <input type="submit" ng-if="user" value="הוסף תגובה"  id="btnComment" class="btn site-btn" ng-click="addComment()">
                             <label class="label label-primary" id="CommentError">שים לב! רק משתמשים מחוברים יכולים להגיב</label>
+                        </div>
+                    </div>
+                    <div ng-if="error">
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
                         </div>
                     </div>
                 </section>
@@ -78,11 +83,7 @@
                     <div class="comment-design">
                     <aside>
                         <div class="row">
-                            <div class="col-md-2">
-                                <span class="btn glyphicon glyphicon-trash"></span>
-                                </a>
-                            </div>
-                            <div class="col-md-10 comment-time-user">{{comment.date}} - {{user.userName}} </div>
+                            <div class="col-md-10 comment-time-user">{{comment.date |  date:'medium'}} - <b>{{comment.userName}}</b> </div>
                         </div>
                     </aside>
                     <div class="row">

@@ -8,4 +8,7 @@ module.exports = function(app) {
 
     app.route('/addMedia')
         .post(media.addMedia);
+
+    app.route('/addComment')
+        .post(media.addComment);
 };

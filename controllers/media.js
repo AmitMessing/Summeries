@@ -15,6 +15,33 @@ exports.mediaDetails = function(req, res) {
     });
 };
 
+exports.addComment = function(req,res){
+    var id = req.body.mediaId;
+    var o_id = new ObjectID(id);
+    var comment = {
+        title: req.body.title,
+        content: req.body.content,
+        date: new Date(),
+        mediaId: req.body.mediaId,
+        userId: req.body.userId,
+        userName: req.body.userName
+    };
+    mediaDb.update({'_id': o_id},
+        {$push: {comments:
+                        {
+                        title: req.body.title,
+                        content: req.body.content,
+                        date: new Date(),
+                        mediaId: req.body.mediaId,
+                        userId: req.body.userId,
+                        userName: req.body.userName
+                        }}});
+
+    mediaDb.findOne({'_id': o_id},function(err, result){
+        res.json(result);
+    });
+};
+
 exports.addMedia = function(req,res){
     var newMedia = {
         actors: req.body.actors,

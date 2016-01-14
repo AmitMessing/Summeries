@@ -1,16 +1,32 @@
 angular.module('mediaApp', [])
-    .controller('mediaController',['$scope', '$stateParams', '$resource', '$timeout','userService', function ($scope,$stateParams,$resource,$timeout, userService) {
+    .controller('mediaController',['$scope','$window','$stateParams', '$resource', '$timeout','userService', function ($scope,$window, $stateParams, $resource, $timeout, userService) {
 
         $scope.user = userService.getLoggedUser();
-
         var mediaId = $stateParams.mediaId;
-        $scope.media = {};
-        $scope.comment = {
+        $scope.commen = {
             title: "",
-            content: "",
-            date: "",
-            mediaId: "",
-            userId: ""
+            content: ""
+        };
+        $scope.media = {};
+
+        $scope.addComment = function(){
+            if($scope.comment.title != "" && $scope.comment.content) {
+                $scope.comment.mediaId = mediaId;
+                $scope.comment.userId = $scope.user._id;
+                $scope.comment.userName = $scope.user.userName;
+                $scope.comment.date = new Date();
+
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/addComment',
+                    data: $scope.comment,
+                    dataType: 'json',
+                    success: function () {
+                        $window.location.reload();
+                    }
+                });
+            }
         };
 
         var validateFields = function(){
@@ -69,14 +85,6 @@ angular.module('mediaApp', [])
             /*if (window.document.getElementById("btnComment").name === "") {
                 window.document.getElementById("btnComment").disabled = true;
             }*/
-        };
-
-        $scope.comment = {
-            title: "",
-            content: "",
-            date: "",
-            mediaId: "",
-            userId: "",
         };
 
         var initImdbApi = function (d, s, id) {
