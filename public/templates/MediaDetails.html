@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    <input type="text" ng-model="comment.title" style="width:100%"  ng-disabled="!user">
+                                    <input type="text" ng-model="comment.title" style="width:100%"  ng-disabled="user == null || user == 'null'">
                                 </div>
                                 <div class="col-md-2">
                                     <label>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    <input type="text" ng-model="comment.content" style="width:100%"  ng-disabled="!user">
+                                    <input type="text" ng-model="comment.content" style="width:100%"  ng-disabled="user == null || user == 'null'">
                                 </div>
                                 <div class="col-md-2">
                                     <label>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="submit" ng-if="user" value="הוסף תגובה"  id="btnComment" class="btn site-btn" ng-click="addComment()">
+                            <input type="submit" ng-if="user != null && user != 'null'" value="הוסף תגובה"  id="btnComment" class="btn site-btn" ng-click="addComment()">
                             <label class="label label-primary" id="CommentError">שים לב! רק משתמשים מחוברים יכולים להגיב</label>
                         </div>
                     </div>
@@ -81,21 +81,25 @@
                 <h3>תגובות:</h3>
                 <div ng-repeat="comment in media.comments">
                     <div class="comment-design">
-                    <aside>
                         <div class="row">
-                            <div class="col-md-10 comment-time-user">{{comment.date |  date:'medium'}} - <b>{{comment.userName}}</b> </div>
+                            <div class="col-md-12">
+                                  <h5>
+                                      <b>
+                                        {{comment.title}}
+                                      </b>
+                                  </h5>
+                            </div>
                         </div>
-                    </aside>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <b>{{comment.title}}</b>
+                        <div class="row">
+                            <div class="col-md-12 comment-content-size">
+                                <h5>
+                                {{comment.content}}
+                                </h5>
+                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 comment-content-size">
-                         {{comment.content}}
+                        <div class="row">
+                            <div class="col-md-12"><label style="color: #2aabd2">{{comment.date | date: 'dd-MM-yyyy HH:mm'}} | {{comment.userName}}</label> </div>
                         </div>
-                    </div>
                 </div>
                 </div>
             </div>

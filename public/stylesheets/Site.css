@@ -31,6 +31,15 @@ footer p {
     border: 1px solid #A5D5D0;
     padding: 6px;
     margin-bottom: 5px;
+    box-shadow: 0px 0px 3px darkgrey;
+}
+
+.comment-alert{
+    position: fixed;
+    bottom: 34px;
+    left: 0px;
+    width: 36%;
+    height: 52px;
 }
 
 .comment-design h2 {

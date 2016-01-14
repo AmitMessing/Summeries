@@ -59,6 +59,6 @@ mainApp.controller('messagesController', ['$scope', '$timeout', 'socket', functi
 
                 $timeout(function(){
                         $scope.hidden = true;
-                },10000);
+                },5000);
         });
 }]);

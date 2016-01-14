@@ -1,6 +1,6 @@
 angular.module('mediaApp', [])
     .controller('mediaController',['$scope','$window','$stateParams', '$resource', '$timeout','userService','socket', function ($scope,$window, $stateParams, $resource, $timeout, userService, socket) {
-        $scope.user = JSON.parse(userService.getLoggedUser());
+
         $scope.allMovies = [];
         $scope.getAllMovies = function() {
             $resource('/getAllMovies').query(function (allMedia) {
@@ -21,8 +21,15 @@ angular.module('mediaApp', [])
             });
         };
 
+        var u = userService.getLoggedUser();
+        if(u)
+        {
+            $scope.user = JSON.parse(userService.getLoggedUser());
+        }
+        else {
+            $scope.user = undefined;
+        }
 
-        $scope.user = userService.getLoggedUser();
         var mediaId = $stateParams.mediaId;
         $scope.media = {};
 
