@@ -1,5 +1,11 @@
 mainApp.controller('userController',['$scope','$state','userService', function ($scope, $state, userService) {
-    $scope.user = JSON.parse(userService.getLoggedUser());
+    var user = userService.getLoggedUser();
+    if(user != null)
+    {
+        $scope.user = JSON.parse(user);
+    }else {
+        $scope.user = undefined;
+    }
     $scope.error = "";
     $scope.loginDetails = {
         userName: "",
@@ -58,7 +64,14 @@ mainApp.controller('userController',['$scope','$state','userService', function (
             });
         }
     }
-    $scope.userDetails = JSON.parse(userService.getLoggedUser());
+    if($scope.user != null)
+    {
+        $scope.userDetails = $scope.user;
+    }
+    else
+    {
+        $scope.userDetails = {};
+    }
 
     $scope.updateUserDetails = function(){
         if(validateFields())
@@ -72,6 +85,7 @@ mainApp.controller('userController',['$scope','$state','userService', function (
                     if(result.error != null || result.error != undefined)
                     {
                         $scope.error = "שם משתמש כבר קיים";
+                        $scope.$apply();
                     }
                     else {
                         userService.setLoggedUSer(result);
