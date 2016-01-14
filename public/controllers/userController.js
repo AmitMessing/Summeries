@@ -42,8 +42,15 @@ mainApp.controller('userController',['$scope','$state','userService', function (
                 data     : $scope.loginDetails,
                 dataType : 'json',
                 success: function(user) {
-                    userService.setLoggedUSer(user);
-                    $state.go('home');
+                    if(user)
+                    {
+                        userService.setLoggedUSer(user);
+                        $state.go('home');
+                    }
+                    else {
+                        $scope.error = "שם משתמש או סיסמא שגויים, נסה שנית";
+                        $scope.$apply();
+                    }
                 }
             });
         }
@@ -57,9 +64,15 @@ mainApp.controller('userController',['$scope','$state','userService', function (
                 url      : '/register',
                 data     : $scope.user,
                 dataType : 'json',
-                success: function() {
-                    userService.setLoggedUSer($scope.user);
-                    $state.go('home');
+                success: function(result) {
+                    if(result.error != null || result.error != undefined)
+                    {
+                        $scope.error = "שם משתמש כבר קיים";
+                        $scope.$apply();
+                    }else {
+                        userService.setLoggedUSer(result);
+                        $state.go('home');
+                    }
                 }
             });
         }
