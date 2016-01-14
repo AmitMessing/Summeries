@@ -22,7 +22,7 @@ angular.module('mediaApp', [])
         };
 
 
-        $scope.user = userService.getLoggedUser();
+        $scope.user = JSON.parse(userService.getLoggedUser());
         var mediaId = $stateParams.mediaId;
         $scope.media = {};
 
