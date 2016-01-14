@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var mongodb = require('mongodb');
 var cons = require('consolidate');
+var socket = require('socket.io');
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
@@ -54,6 +55,15 @@ app.set('port',process.env.PORT || 8080);
 
 module.exports = app;
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+server.listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
+});
+
+var io = socket.listen(server);
+io.sockets.on('connection', function (client) {
+    client.emit('messages',{hello:'world'});
+    client.on('commentAdded', function(msg){
+        client.broadcast.emit('commentAdded', {msg: msg});
+    });
 });
