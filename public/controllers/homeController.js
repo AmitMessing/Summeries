@@ -10,19 +10,6 @@ angular.module('homeApp', ['ui.bootstrap'])
                 });
             };
 
-        $scope.addMedia = function(){
-            var modalInstance = $uibModal.open({
-                templateUrl: 'templates/addMediaModal.html',
-                controller: 'addMediaController',
-                size: 'lg',
-                resolve: {
-                    items: function () {
-                        return $scope.allMedia;
-                    }
-                }
-            });
-        }
-
         $scope.openAdvanceSearchInstruction = function () {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -33,7 +20,4 @@ angular.module('homeApp', ['ui.bootstrap'])
                 }
             });
         };
-    }])
-    .controller('addMediaController',['$scope','$resource','$state','$uibModal','AllMedia',function ($scope, $resource, $state, $uibModal, AllMedia) {
-
-    }])
+    }]);
