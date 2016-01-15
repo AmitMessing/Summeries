@@ -10,11 +10,6 @@ angular.module('uiRouterApp', [])
                     url: '/',
                     templateUrl: 'templates/home.html',
                     controller: 'homeController'
-                })
-                .state('advanceSearchInstructions', {
-                    url: '/advanceSearchInstructions',
-                    templateUrl:'templates/advanceSearchInstructions.html',
-                    controller: ''
                 }).
                 state('searchResult', {
                     url: '/searchResult/:searchQuery',

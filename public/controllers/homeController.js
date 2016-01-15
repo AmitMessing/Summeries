@@ -27,7 +27,7 @@ angular.module('homeApp', ['ui.bootstrap'])
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'templates/advanceSearchInstructions.html',
-                controller: 'advanceSearchInstruction',
+                controller: '',
                 size: 'lg',
                 resolve: {
                 }
@@ -37,6 +37,3 @@ angular.module('homeApp', ['ui.bootstrap'])
     .controller('addMediaController',['$scope','$resource','$state','$uibModal','AllMedia',function ($scope, $resource, $state, $uibModal, AllMedia) {
 
     }])
-    .controller('advanceSearchInstruction',['$uibModal', function ($uibModal) {
-
-    }]);
