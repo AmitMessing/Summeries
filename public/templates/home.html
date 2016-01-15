@@ -9,7 +9,7 @@
     </div>
     <div class="container-fluid">
         <form class="navbar-form navbar-left row" role="search">
-            <a ui-sref="advanceSearchInstructions" >חיפוש מתקדם</a>
+            <button class="btn-link" ng-click="openAdvanceSearchInstruction()" >חיפוש מתקדם</button>
             <div class="form-group">
                 <input type="text" ng-model="searchQuery" class="form-control" style="padding-top: 10px; margin-top: 1px; border-radius: 1px" placeholder="חיפוש" name="searchString">
             </div>

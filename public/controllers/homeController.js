@@ -1,5 +1,5 @@
-angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls'])
-    .controller('homeController',['$scope','$resource', function ($scope,$resource) {
+angular.module('homeApp', ['ui.bootstrap'])
+    .controller('homeController',['$scope','$resource','$uibModal', function ($scope,$resource,$uibModal) {
         $scope.allMedia = [];
         $scope.getAllMedia = function() {
             $resource('/home/getAllMedia').query(function (allMedia) {
@@ -22,7 +22,21 @@ angular.module('homeApp', ['ui.bootstrap','ui.bootstrap.tpls'])
                 }
             });
         }
+
+        $scope.openAdvanceSearchInstruction = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'templates/advanceSearchInstructions.html',
+                controller: 'advanceSearchInstruction',
+                size: 'lg',
+                resolve: {
+                }
+            });
+        };
     }])
     .controller('addMediaController',['$scope','$resource','$state','$uibModal','AllMedia',function ($scope, $resource, $state, $uibModal, AllMedia) {
+
+    }])
+    .controller('advanceSearchInstruction',['$uibModal', function ($uibModal) {
 
     }]);
