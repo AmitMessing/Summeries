@@ -8,9 +8,9 @@ const COMMENTS = "תגובות";
 const DIRECTOR = "במאי";
 
 enumMediaType = {
-    None: 0,
-    Movie: 1,
-    Series: 2
+    None: "0",
+    Movie: "1",
+    Series: "2"
 };
 
 exports.searchResult = function(req, res) {
@@ -21,7 +21,7 @@ exports.searchResult = function(req, res) {
 exports.searchMedia = function(req,res){
     var searchQuery = req.params.searchQuery;
 
-    if (searchQuery.substring(0,1) == '@'){
+    if (searchQuery.substring(0,1) == '#'){
         advancedSearch(res, searchQuery.substring(1));
     }
     else{
@@ -51,16 +51,13 @@ var advancedSearch = function(res, searchQuery){
         {
             case CATEGORY:
             {
-                var enmCategory = (tempStrings[1]);
-                searchResult = media.find({"categories": enmCategory});
-
+                searchResult = media.find({"categories": tempStrings[1]});
                 break;
             }
             case COMMENTS:
             {
                 var userName = tempStrings[1];
-                var user = users.find({"userName": userName}).limit(1);
-                searchResult = media.find({"comments.userId": user.userId}).ToList();
+                searchResult = media.find({"comments": {$elemMatch: {"userName": userName}}});
                 break;
             }
             case DIRECTOR:
@@ -73,39 +70,36 @@ var advancedSearch = function(res, searchQuery){
             case SERIES:
             {
                 var mediaType = searchCategory == MOVIE ? enumMediaType.Movie : enumMediaType.Series;
-                var tempResult = media.find({"mediaType": mediaType});
+                var srcQuery = {"mediaType": mediaType};
 
                 // that means we have a category.
                 if (tempStrings.length > 1)
                 {
-                    var category = tempStrings[1];
-                    tempResult = tempResult.find({"categories": category});
+                    srcQuery = { $and: [srcQuery,{"categories":tempStrings[1]}]};
                 }
                 // that means we have a year.
                 if (tempStrings.length > 2)
                 {
                     var year = tempStrings[2];
-                    tempResult = tempResult.find({"ReleaseDate": year});
+                    srcQuery.$and.push({"releaseDate": { "$gte": new Date(year+"-01-01"), "$lte": new Date(year+"-12-31") }})
                 }
 
-                if(tempResult != null)
-                {
-                    searchResult = tempResult.toArray(function(err, searchResult) {
-                        if (err) {
-                            return res.status(500).json({
-                                error: 'error occured while searching for media'
-                            });
-                        }
-                        res.json(searchResult);
-                    });
-                }
+                searchResult = media.find(srcQuery);
                 break;
             }
         }
+        searchResult.toArray(function(err, searchResult) {
+            if (err) {
+                return res.status(500).json({
+                    error: 'error occured while searching'
+                });
+            }
+            res.json(searchResult);
+        });
     }
     catch(ex){
         return res.status(500).json({
-            error: 'error occured while searching for media'
+            error: 'error occured while searching'
         });
     }
 };
